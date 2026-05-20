@@ -1,0 +1,96 @@
+
+<h1 align="center">MindStudio Profiler Analyze</h1>
+<div align="center">
+  <p>🚀 <b>昇腾性能分析工具</b></p>
+[📖工具文档](./docs/zh/README.md) |
+[🔥昇腾社区](https://www.hiascend.com/developer/software/mindstudio) |
+[🌐Release](https://gitcode.com/Ascend/msprof-analyze/releases)
+
+</div>
+
+## 📌 简介
+
+MindStudio Profiler Analyze（`msprof-analyze`）是面向 AI 训练与推理场景的性能分析工具，基于采集得到的 profiling 数据进行统计、比对和诊断，帮助定位计算、通信、调度及集群场景下的性能瓶颈。
+
+## 📖 功能介绍
+
+| 功能名称 | 功能简介                                                                         | 文档 | 源码目录                                                       |
+| --- |------------------------------------------------------------------------------| --- |------------------------------------------------------------|
+| 集群分析 | 汇总集群通信数据，输出结果支持在 MindStudio Insight 中可视化查看。 | [集群分析](./docs/zh/README.md) | [cluster_analyse](./msprof_analyze/cluster_analyse) |
+| 专家建议 | 基于性能数据自动识别计算、调度、通信等潜在问题，并输出优化建议。                                             | [专家建议](./docs/zh/advisor_instruct.md) | [advisor](./msprof_analyze/advisor)                    |
+| 性能比对 | 支持 GPU/NPU、NPU/NPU 等多种场景的性能差异分析。                                             | [性能比对](./docs/zh/compare_tool_instruct.md) | [compare_tools](./msprof_analyze/compare_tools)        |
+
+## 🛠️ 工具安装
+
+推荐直接通过 `pip` 安装：
+
+```bash
+pip install -U msprof-analyze
+```
+
+如需 whl 包下载、源码编译，请参见 《[msprof-analyze工具安装指南](./docs/zh/install_guide.md)》。
+
+## 🚀 快速入门
+
+`msprof-analyze` 常用分析命令如下：
+
+```bash
+# 集群通信汇总
+msprof-analyze cluster -m all -d ./cluster_data
+
+# 专家建议
+msprof-analyze advisor all -d ./prof_data -o ./advisor_output
+
+# 性能比对
+msprof-analyze compare -d ./ascend_pt -bp ./gpu_trace.json -o ./compare_output
+```
+
+## 🔍 目录结构
+
+关键目录如下，详细信息参见 《[目录结构说明](./docs/zh/dir_structure.md)》。
+
+```text
+msprof-analyze
+├── config                      # 配置文件目录
+├── docs                        # 文档目录
+├── msprof_analyze              # 主代码包目录
+│   ├── advisor                 # 专家建议模块
+│   ├── cli                     # 命令行入口
+│   ├── cluster_analyse         # 集群分析模块
+│   ├── compare_tools           # 性能比对模块
+│   ├── prof_common             # 公共能力模块
+│   └── prof_exports            # 导出模块
+├── requirements                # 依赖管理目录
+├── test                        # 测试目录
+└── README.md                   # 项目说明文档
+```
+
+## 📝 相关说明
+
+- 《[自定义分析规则开发指导](docs/zh/custom_analysis_guide.md)》
+- 《[版本说明](docs/zh/release_notes.md)》
+- 《[安全声明](docs/zh/security_statement.md)》
+- [LICENSE](./LICENSE)
+
+## 💬 建议与交流
+
+欢迎大家为社区做贡献。如果有任何疑问或建议，请提交 [Issues](https://gitcode.com/Ascend/msprof-analyze/issues)，我们会尽快回复。感谢您的支持。
+
+|                   📱 关注 MindStudio 公众号                   | 💬 更多交流与支持                                             |
+| :----------------------------------------------------------: | :----------------------------------------------------------- |
+| <img src="https://raw.gitcode.com/Ascend/msot/files/master/docs/zh/figures/readme/officialAccount.png" width="120"><br><sub>*扫码关注获取最新动态*</sub> | 💡 **加入微信交流群**：<br>关注公众号，回复“交流群”即可获取入群二维码。<br><br>🛠️ **其他渠道**：<br>👉 昇腾助手：[![WeChat](https://img.shields.io/badge/WeChat-07C160?style=flat-square&logo=wechat&logoColor=white)](https://gitcode.com/Ascend/msot/blob/master/docs/zh/figures/readme/xiaozhushou.png)<br>👉 昇腾论坛：[![Website](https://img.shields.io/badge/Website-%231e37ff?style=flat-square&logo=RSS&logoColor=white)](https://www.hiascend.com/forum/) |
+
+## 🤝 致谢
+
+本工具由华为公司的下列部门联合贡献：
+
+- 昇腾计算 MindStudio 开发部
+- 华为云昇腾云服务
+- 昇腾计算生态使能部
+- 2012 网络实验室
+
+感谢来自社区的每一个 PR，欢迎贡献 `msprof-analyze`。
+
+## 关于MindStudio团队
+
+华为 MindStudio 全流程开发工具链团队致力于提供端到端的昇腾 AI 应用开发解决方案，使能开发者高效完成训练开发、推理开发和算子开发。更多信息请访问 [昇腾社区](https://www.hiascend.com/developer/software/mindstudio) 和 [昇腾论坛](https://www.hiascend.com/forum/)。
